@@ -191,6 +191,8 @@ You can also enter the repl mode by passing the `--repl` in your input to `.run(
 <a name="api-reference_complete" />
 #### `.complete(argv)`
 
+---
+
 ### CLI Metadata
 
 Note that all methods from here down can be chained (i.e. they all return the Click instance)
@@ -257,6 +259,8 @@ Option's support the following config keys:
 
 <a name="api-reference_option-set" />
 #### `.optionSet(configs)`
+
+---
 
 ### Sub-Commands
 
