@@ -1,14 +1,3 @@
-# cli-ck
-
-CLI framework for Node.js that's qui-ck and easy
-
-cli-ck provides a simple and flexible interface for creating cli apps in Node.js.
-
-## Synopsis
-
-`easy.js`
-
-```javascript
 #!/usr/bin/env node
 require('babel-polyfill')
 var Click = require('../lib/cli-ck')
@@ -42,22 +31,3 @@ var cli = new Click()
         console.log('please choose a command')
     })
 cli.run(process.argv)
-```
-
-In your terminal:
-
-```bash
-~$ ./easy.js help
-~$ ./easy.js help say
-~$ ./easy.js say hi there
-~$ ./easy.js say -v loud hey out there
-```
-
-## Summary
-
-* Simple, chaining interface for easy and clear cli specification
-* Batteries included!
-    * Auto-generated help/usage output
-    * Default commands & options provided (`help`, `exit`, `--version`, `--help`)
-    * Robust validation of commands, options, and argument values
-    * Auto-included repl allows you to run your cli as an interactive repl
