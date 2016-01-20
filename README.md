@@ -129,7 +129,6 @@ Creates a new Click instance.
 ---
 
 <a name="api-reference_parse"></a>
-
 #### .parse(argv)
 
 Parses a line and returns a `parseResult`
@@ -157,7 +156,6 @@ Most often you just want the args and opts parsed.
 ---
 
 <a name="api-reference_run"></a>
-
 #### .run(argv)
 
 Parses and runs the CLI handler for the given input.
@@ -171,7 +169,6 @@ Parses and runs the CLI handler for the given input.
 ---
 
 <a name="api-reference_repl"></a>
-
 #### .repl(argv)
 
 Starts an interactive repl session using the Click instance's cli specification.
@@ -189,7 +186,6 @@ You can also enter the repl mode by passing the `--repl` in your input to `.run(
 ---
 
 <a name="api-reference_validate"></a>
-
 #### .validate(argv)
 
 ---
