@@ -93,11 +93,37 @@ In your terminal:
 <a name="api-reference" />
 ## API
 
-`var Click = require('cli-ck')`
+#### `var Click = require('cli-ck')`
 
-#### `new Click()`
+#### `new Click(config)`
+
+Creates a new Click instance.
+
+* `config` (optional):
+    * `noHelp`:  set to true to exclude help command
 
 #### `.parse(argv)`
+
+Parses a line and returns a `parseResult`
+
+##### Parameters
+
+- `argv` - CLI input to parse
+    - expects `string`, `array`, or instance of `ArgConsumer` (internal class used for parsing)
+
+##### Returns:
+
+Object with keys of form:
+
+```
+{
+    args: [... non-option arguments ...],
+    opts: [... dict of optName: optValue ...],
+    command: e.g. 'say loudly',
+    context: <Click instance used to parse>
+    lastContext: <Click instance for actually executing command>
+}
+```
 
 #### `.run(argv)`
 
