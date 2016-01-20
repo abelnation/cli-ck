@@ -47,6 +47,7 @@ cli.run(process.argv)
 In your terminal:
 
 ```bash
+~$ chmod u+x ./easy.js
 ~$ ./easy.js help
 ~$ ./easy.js help say
 ~$ ./easy.js say hi there
