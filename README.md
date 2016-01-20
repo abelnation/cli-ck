@@ -129,7 +129,7 @@ Creates a new Click instance.
 ---
 
 <a name="api-reference_parse"></a>
-#### .parse(argv)
+#### `.parse(argv)`
 
 Parses a line and returns a `parseResult`
 
@@ -156,7 +156,7 @@ Most often you just want the args and opts parsed.
 ---
 
 <a name="api-reference_run"></a>
-#### .run(argv)
+#### `.run(argv)`
 
 Parses and runs the CLI handler for the given input.
 `run` will only the handler for the lowest-down sub-command parsed from the input.
@@ -169,7 +169,7 @@ Parses and runs the CLI handler for the given input.
 ---
 
 <a name="api-reference_repl"></a>
-#### .repl(argv)
+#### `.repl(argv)`
 
 Starts an interactive repl session using the Click instance's cli specification.
 Each line submitted will execute `Click.run()` on the line, and print the results.
@@ -186,12 +186,12 @@ You can also enter the repl mode by passing the `--repl` in your input to `.run(
 ---
 
 <a name="api-reference_validate"></a>
-#### .validate(argv)
+#### `.validate(argv)`
 
 ---
 
 <a name="api-reference_complete"></a>
-#### .complete(argv)
+#### `.complete(argv)`
 
 ---
 
@@ -202,32 +202,32 @@ Note that all methods from here down can be chained (i.e. they all return the Cl
 ---
 
 <a name="api-reference_name"></a>
-#### .name(name)
+#### `.name(name)`
 
 ---
 
 <a name="api-reference_description"></a>
-#### .description(desc)
+#### `.description(desc)`
 
 ---
 
 <a name="api-reference_version"></a>
-#### .version(versionStr)
+#### `.version(versionStr)`
 
 ---
 
 <a name="api-reference_usage"></a>
-#### .usage(usageStr)
+#### `.usage(usageStr)`
 
 ---
 
 <a name="api-reference_nargs"></a>
-#### .nargs(min, max)
+#### `.nargs(min, max)`
 
 ---
 
 <a name="api-reference_handler"></a>
-#### .handler(handlerFn)
+#### `.handler(handlerFn)`
 
 ##### Parameters
 
@@ -237,7 +237,7 @@ Note that all methods from here down can be chained (i.e. they all return the Cl
 ### Options
 
 <a name="api-reference_option"></a>
-#### .option(name, config)
+#### `.option(name, config)`
 
 ##### Parameters
 
@@ -260,7 +260,7 @@ Option's support the following config keys:
 ---
 
 <a name="api-reference_option-set"></a>
-#### .optionSet(configs)
+#### `.optionSet(configs)`
 
 ---
 
@@ -274,7 +274,7 @@ context to parse the rest of the line.  This means, e.g. that your commands can 
 configured to support or require options that your top level program does not.
 
 <a name="api-reference_command"></a>
-#### .command(name, config, context)
+#### `.command(name, config, context)`
 
 Registers a command name with a given context.
 
