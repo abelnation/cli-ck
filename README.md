@@ -7,10 +7,9 @@ Inspired by the Yargs api, `cli-ck` provides an API that is flexible and compose
 making it a breeze to write simple cli tools or complex interactive repl's.
 
 1. [Synopsis](#synopsis)
-1. [API Reference](#api-reference)
+1. [API Reference](#api)
 1. [Development](#development)
 
-<a name="synopsis" />
 ## Synopsis
 
 ```
@@ -287,7 +286,6 @@ var cli = new Click()
     .command('bar', { 'desc': 'bar command' }, require('./commands/bar')))
 ```
 
-<a name="development" />
 ## Development
 
 All source code is written in ES6 javascript and compiled using Babel
