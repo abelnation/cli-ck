@@ -52,6 +52,11 @@ In your terminal:
 ~$ ./easy.js help say
 ~$ ./easy.js say hi there
 ~$ ./easy.js say -v loud hey out there
+~$ ./easy.js --repl
+> help
+> say hi
+> exit
+~$ 
 ```
 
 ## Summary
