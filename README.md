@@ -93,8 +93,25 @@ Try these in your terminal:
 <a name="api-reference" />
 ## API
 
+1. [new Click()](#api-reference_new-click)
+1. [.parse()](#api-reference_parse)
+1. [.run()](#api-reference_run)
+1. [.repl()](#api-reference_repl)
+1. [.validate()](#api-reference_validate)
+1. [.complete()](#api-reference_complete)
+1. [.name(name)](#api-reference_name)
+1. [.description(desc)](#api-reference_description)
+1. [.version(versionStr)](#api-reference_version)
+1. [.usage(usageStr)](#api-reference_usage)
+1. [.nargs(min, max)](#api-reference_nargs)
+1. [.handler(handlerFn)](#api-reference_handler)
+1. [.option(name, config)](#api-reference_option)
+1. [.optionSet(configs)](#api-reference_option-set)
+1. [.command(name, config, context)](#api-reference_command)
+
 #### `var Click = require('cli-ck')`
 
+<a name="api-reference_new-click" />
 #### `new Click(config)`
 
 Creates a new Click instance.
@@ -102,6 +119,7 @@ Creates a new Click instance.
 * `config` (optional):
     * `noHelp`:  set to true to exclude help command
 
+<a name="api-reference_parse" />
 #### `.parse(argv)`
 
 Parses a line and returns a `parseResult`
@@ -126,6 +144,7 @@ Most often you just want the args and opts parsed.
 }
 ```
 
+<a name="api-reference_run" />
 #### `.run(argv)`
 
 Parses and runs the CLI handler for the given input.
@@ -136,6 +155,7 @@ Parses and runs the CLI handler for the given input.
 - `argv` - CLI input to parse
     - expects a `string`, or an `array` of strings
 
+<a name="api-reference_repl" />
 #### `.repl(argv)`
 
 Starts an interactive repl session using the Click instance's cli specification.
@@ -150,24 +170,32 @@ completion for the following:
 
 You can also enter the repl mode by passing the `--repl` in your input to `.run()`
 
+<a name="api-reference_validate" />
 #### `.validate(argv)`
 
+<a name="api-reference_complete" />
 #### `.complete(argv)`
 
 ### CLI Metadata
 
 Note that all methods from here down can be chained (i.e. they all return the Click instance)
 
+<a name="api-reference_name" />
 #### `.name(name)`
 
+<a name="api-reference_description" />
 #### `.description(desc)`
 
+<a name="api-reference_version" />
 #### `.version(versionStr)`
 
+<a name="api-reference_usage" />
 #### `.usage(usageStr)`
 
+<a name="api-reference_nargs" />
 #### `.nargs(min, max)`
 
+<a name="api-reference_handler" />
 #### `.handler(handlerFn)`
 
 ##### Parameters
@@ -177,6 +205,7 @@ Note that all methods from here down can be chained (i.e. they all return the Cl
 
 ### Options
 
+<a name="api-reference_option" />
 #### `.option(name, config)`
 
 ##### Parameters
@@ -197,6 +226,7 @@ Option's support the following config keys:
 - `number` - set to true to set type to `number`
 - `string` - set to true to set type to `string`
 
+<a name="api-reference_option-set" />
 #### `.optionSet(configs)`
 
 ### Sub-Commands
@@ -208,6 +238,7 @@ When parsing a line, once a command token is encountered, the parser uses the co
 context to parse the rest of the line.  This means, e.g. that your commands can be
 configured to support or require options that your top level program does not.
 
+<a name="api-reference_command" />
 #### `.command(name, config, context)`
 
 Registers a command name with a given context.
