@@ -124,6 +124,8 @@ Creates a new Click instance.
 * `config` (optional):
     * `noHelp`:  set to true to exclude help command
 
+---
+
 <a name="api-reference_parse" />
 #### `.parse(argv)`
 
@@ -149,6 +151,8 @@ Most often you just want the args and opts parsed.
 }
 ```
 
+---
+
 <a name="api-reference_run" />
 #### `.run(argv)`
 
@@ -159,6 +163,8 @@ Parses and runs the CLI handler for the given input.
 
 - `argv` - CLI input to parse
     - expects a `string`, or an `array` of strings
+
+---
 
 <a name="api-reference_repl" />
 #### `.repl(argv)`
@@ -175,8 +181,12 @@ completion for the following:
 
 You can also enter the repl mode by passing the `--repl` in your input to `.run()`
 
+---
+
 <a name="api-reference_validate" />
 #### `.validate(argv)`
+
+---
 
 <a name="api-reference_complete" />
 #### `.complete(argv)`
@@ -185,20 +195,32 @@ You can also enter the repl mode by passing the `--repl` in your input to `.run(
 
 Note that all methods from here down can be chained (i.e. they all return the Click instance)
 
+---
+
 <a name="api-reference_name" />
 #### `.name(name)`
+
+---
 
 <a name="api-reference_description" />
 #### `.description(desc)`
 
+---
+
 <a name="api-reference_version" />
 #### `.version(versionStr)`
+
+---
 
 <a name="api-reference_usage" />
 #### `.usage(usageStr)`
 
+---
+
 <a name="api-reference_nargs" />
 #### `.nargs(min, max)`
+
+---
 
 <a name="api-reference_handler" />
 #### `.handler(handlerFn)`
@@ -230,6 +252,8 @@ Option's support the following config keys:
 - `count` - set to true to set type to `count`
 - `number` - set to true to set type to `number`
 - `string` - set to true to set type to `string`
+
+---
 
 <a name="api-reference_option-set" />
 #### `.optionSet(configs)`
