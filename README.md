@@ -89,7 +89,7 @@ Try these in your terminal:
     * Robust validation of commands, options, and argument values
     * Auto-included repl allows you to run your cli as an interactive repl
 
-<a name="api-reference" />
+<a name="api-reference"></a>
 ## API
 
 Running your program
@@ -128,7 +128,7 @@ Creates a new Click instance.
 
 ---
 
-<a name="api-reference_parse" />
+<a name="api-reference_parse"></a>
 
 #### .parse(argv)
 
@@ -156,7 +156,7 @@ Most often you just want the args and opts parsed.
 
 ---
 
-<a name="api-reference_run" />
+<a name="api-reference_run"></a>
 
 #### .run(argv)
 
@@ -170,7 +170,7 @@ Parses and runs the CLI handler for the given input.
 
 ---
 
-<a name="api-reference_repl" />
+<a name="api-reference_repl"></a>
 
 #### .repl(argv)
 
@@ -188,13 +188,13 @@ You can also enter the repl mode by passing the `--repl` in your input to `.run(
 
 ---
 
-<a name="api-reference_validate" />
+<a name="api-reference_validate"></a>
 
 #### .validate(argv)
 
 ---
 
-<a name="api-reference_complete" />
+<a name="api-reference_complete"></a>
 #### .complete(argv)
 
 ---
@@ -205,32 +205,32 @@ Note that all methods from here down can be chained (i.e. they all return the Cl
 
 ---
 
-<a name="api-reference_name" />
+<a name="api-reference_name"></a>
 #### .name(name)
 
 ---
 
-<a name="api-reference_description" />
+<a name="api-reference_description"></a>
 #### .description(desc)
 
 ---
 
-<a name="api-reference_version" />
+<a name="api-reference_version"></a>
 #### .version(versionStr)
 
 ---
 
-<a name="api-reference_usage" />
+<a name="api-reference_usage"></a>
 #### .usage(usageStr)
 
 ---
 
-<a name="api-reference_nargs" />
+<a name="api-reference_nargs"></a>
 #### .nargs(min, max)
 
 ---
 
-<a name="api-reference_handler" />
+<a name="api-reference_handler"></a>
 #### .handler(handlerFn)
 
 ##### Parameters
@@ -240,7 +240,7 @@ Note that all methods from here down can be chained (i.e. they all return the Cl
 
 ### Options
 
-<a name="api-reference_option" />
+<a name="api-reference_option"></a>
 #### .option(name, config)
 
 ##### Parameters
@@ -263,7 +263,7 @@ Option's support the following config keys:
 
 ---
 
-<a name="api-reference_option-set" />
+<a name="api-reference_option-set"></a>
 #### .optionSet(configs)
 
 ---
@@ -277,7 +277,7 @@ When parsing a line, once a command token is encountered, the parser uses the co
 context to parse the rest of the line.  This means, e.g. that your commands can be
 configured to support or require options that your top level program does not.
 
-<a name="api-reference_command" />
+<a name="api-reference_command"></a>
 #### .command(name, config, context)
 
 Registers a command name with a given context.
