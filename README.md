@@ -6,7 +6,16 @@ CLI framework for Node.js that's qui-ck and easy
 Inspired by the Yargs api, `cli-ck` provides an API that is flexible and composeable
 making it a breeze to write simple cli tools or complex interactive repl's.
 
+1. [Synopsis](#synopsis)
+1. [API Reference](#api-reference)
+1. [Development](#development)
+
+<a name="synopsis" />
 ## Synopsis
+
+```
+npm install cli-ck
+```
 
 `easy.js`
 
@@ -36,7 +45,7 @@ cli.run(process.argv)
 require('babel-polyfill')
 var Click = require('../lib/cli-ck')
 var cli = new Click()
-    .usage('$0 say [--volume {soft,medium,loud}] <...words>')
+    .usage('$0 [--volume {soft,medium,loud}] <...words>')
     .option('volume', {
         alias: 'v',
         desc: 'how loud do you want to say it? [loud, medium, soft]',
@@ -51,10 +60,10 @@ var cli = new Click()
         }
         console.log.apply(null, args)
     })
-
 module.exports = cli
-
-if (require.main
+if (require.main === module) {
+    cli.run(process.argv.slice(2))
+}
 ```
 
 In your terminal:
@@ -81,12 +90,70 @@ In your terminal:
     * Robust validation of commands, options, and argument values
     * Auto-included repl allows you to run your cli as an interactive repl
 
+<a name="api-reference" />
 ## API
+
+`var Click = require('cli-ck')`
+
+#### `new Click()`
+
+#### `.parse(argv)`
+
+#### `.run(argv)`
+
+#### `.repl(argv)`
+
+#### `.validate(argv)`
+
+#### `.complete(argv)`
 
 ### CLI Metadata
 
+#### `.name(name)`
 
+#### `.description(desc)`
+
+#### `.version(versionStr)`
+
+#### `.usage(usageStr)`
+
+#### `.nargs(min, max)`
+
+#### `.handler(handlerFn)`
+
+- `handlerFn`: `function cb(args, opts, argv, context, finalContext) { ... }`
 
 ### Options
 
+#### `.option(name, config)`
+
+#### `.optionSet(configs)`
+
 ### Sub-Commands
+
+#### `.command(name, config, context)`
+
+<a name="development" />
+## Development
+
+All source code is written in ES6 javascript and compiled using Babel
+with the `es2015` preset.
+
+Main dev commands:
+
+```
+# setup
+npm install
+
+# compile src
+npm run build
+
+# watch src files and re-build on change
+npm run watch
+
+# run tests, outputs result to mocha-test.html
+npm test
+
+# watch compiled files, and re-run tests on change
+npm run testwatch
+```
