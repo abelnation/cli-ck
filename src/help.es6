@@ -83,10 +83,15 @@ class Help {
         if (!Click) { Click = require('./cli-ck') }
 
         return new Click({ noHelp: true })
-            .handler((args, opts, argv, context, lastContext) => {
+            .handler((args, opts, argv, parentContext, lastContext) => {
                 // parse line after 'help' to figure out command context
                 // to print help for
-                const parseResult = (new Parser(context)).parse(argv.slice(1))
+
+                console.dir(argv)
+
+                const helpIdx = argv.indexOf('help')
+
+                const parseResult = (new Parser(parentContext)).parse(argv.slice(helpIdx + 1))
                 const cmdContext = parseResult.lastContext
 
                 const helpText = new Help(cmdContext).getHelp()
