@@ -216,7 +216,8 @@ Registers a command name with a given context.
 
 - `name` - name of command
 - `config` - dict of configs for this option (see below)
-- `context` - `function(cli) {}` or `Click` instance
+- `context` - CLI context for your sub-command
+    - expects either `function(cli) {}` or a `Click` instance
 
 Commands's support the following config keys:
 
@@ -237,6 +238,16 @@ var cli = new Click()
             console.log('bar')
         }
     })
+```
+
+You could also define and export your commands' sub-cli's in separate modules to make
+your top-level module much cleaner.
+
+```
+var cli = new Click()
+    // passing in a Click instance as `context`
+    .command('foo', { 'desc': 'foo command' }, require('./commands/foo')))
+    .command('bar', { 'desc': 'bar command' }, require('./commands/bar')))
 ```
 
 <a name="development" />
