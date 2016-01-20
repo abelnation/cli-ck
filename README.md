@@ -92,7 +92,7 @@ Try these in your terminal:
 <a name="api-reference"></a>
 ## API
 
-Running your program
+- Running your program
 
   1. [.parse()](#api-reference_parse)
   1. [.run()](#api-reference_run)
@@ -100,7 +100,7 @@ Running your program
   1. [.validate()](#api-reference_validate)
   1. [.complete()](#api-reference_complete)
 
-Configuration
+- Configuration
 
   1. [.name(name)](#api-reference_name)
   1. [.description(desc)](#api-reference_description)
@@ -109,7 +109,7 @@ Configuration
   1. [.nargs(min, max)](#api-reference_nargs)
   1. [.handler(handlerFn)](#api-reference_handler)
 
-Options and Commands
+- Options and Commands
 
   1. [.option(name, config)](#api-reference_option)
   1. [.optionSet(configs)](#api-reference_option-set)
