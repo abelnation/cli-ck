@@ -113,13 +113,14 @@ Parses a line and returns a `parseResult`
 
 ##### Returns:
 
-Object with keys of form:
+Most often you just want the args and opts parsed.
+`parse` returns an Object of the form:
 
 ```
 {
     args: [... non-option arguments ...],
-    opts: [... dict of optName: optValue ...],
-    command: e.g. 'say loudly',
+    opts: {... dict of optName: optValue ...},
+    command: string of full command e.g. 'say loudly',
     context: <Click instance used to parse>
     lastContext: <Click instance for actually executing command>
 }
@@ -127,13 +128,39 @@ Object with keys of form:
 
 #### `.run(argv)`
 
+Parses and runs the CLI handler for the given input.
+`run` will only the handler for the lowest-down sub-command parsed from the input.
+
+##### Parameters
+
+- `argv` - CLI input to parse
+    - expects `string`, `array`, or instance of `ArgConsumer` (internal class used for parsing)
+
+##### Returns
+
+`undefined`
+
 #### `.repl(argv)`
+
+Starts an interactive repl session using the Click instance's cli specification.
+Each line submitted will execute `Click.run()` on the line, and print the results.
+
+Click has built-in tab-completion in the repl context.  Click will do best effort
+completion for the following:
+
+* command names
+* option names
+* option values (for options with choices specified)
+
+You can also enter the repl mode by passing the `--repl` in your input to `.run()`
 
 #### `.validate(argv)`
 
 #### `.complete(argv)`
 
 ### CLI Metadata
+
+Note that all methods from here down can be chained (i.e. they all return the Click instance)
 
 #### `.name(name)`
 
@@ -147,11 +174,32 @@ Object with keys of form:
 
 #### `.handler(handlerFn)`
 
-- `handlerFn`: `function cb(args, opts, argv, context, finalContext) { ... }`
+##### Parameters
+
+- `handlerFn`: Handler function called when Click.run() is called
+    - `function cb(args, opts, argv, context, finalContext) { ... }`
 
 ### Options
 
 #### `.option(name, config)`
+
+##### Parameters
+
+- `name` - name of option
+- `config` - dict of configs for this option (see below)
+
+Option's support the following config keys:
+
+- `demand`/`required` - Option is required.  Calling run without opt value will throw error.
+- `desc`/`describe`/`description` - Text description of option's purpose
+- `alias` - Either `string` or `array` of alternate names for option.
+- `choices` - `array` of string or number values allowed for the option.
+- `defaultValue` - value assigned to option if not specified
+- `type` - `string`, `count`, `boolean`, or `number`
+- `boolean` - set to true to set type to `boolean`
+- `count` - set to true to set type to `count`
+- `number` - set to true to set type to `number`
+- `string` - set to true to set type to `string`
 
 #### `.optionSet(configs)`
 
