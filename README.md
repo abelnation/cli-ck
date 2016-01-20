@@ -66,7 +66,7 @@ if (require.main === module) {
 }
 ```
 
-In your terminal:
+Try these in your terminal:
 
 ```bash
 ~$ chmod u+x ./easy.js
@@ -134,11 +134,7 @@ Parses and runs the CLI handler for the given input.
 ##### Parameters
 
 - `argv` - CLI input to parse
-    - expects `string`, `array`, or instance of `ArgConsumer` (internal class used for parsing)
-
-##### Returns
-
-`undefined`
+    - expects a `string`, or an `array` of strings
 
 #### `.repl(argv)`
 
@@ -205,7 +201,43 @@ Option's support the following config keys:
 
 ### Sub-Commands
 
+Click provides sophisticated support for sub-commands and an API that lets you
+easily compose multiple sub-cli's together to nest your commands as deep as you want.
+
+When parsing a line, once a command token is encountered, the parser uses the commands
+context to parse the rest of the line.  This means, e.g. that your commands can be
+configured to support or require options that your top level program does not.
+
 #### `.command(name, config, context)`
+
+Registers a command name with a given context.
+
+##### Parameters
+
+- `name` - name of command
+- `config` - dict of configs for this option (see below)
+- `context` - `function(cli) {}` or `Click` instance
+
+Commands's support the following config keys:
+
+- `desc`/`describe`/`description` - Text description of option's purpose
+
+##### Example
+
+```
+var cli = new Click()
+    // passing in a Click instance as `context`
+    .command('foo', { 'desc': 'foo command' }, new Click()
+        .handler(function(args, opts) {
+            console.log('foo')
+        }))
+    // passing in a setupFn as `context`
+    .command('bar', { 'desc': 'bar command' }, function(barCli) {
+        barCli.handler(function(args, opts) {
+            console.log('bar')
+        }
+    })
+```
 
 <a name="development" />
 ## Development
