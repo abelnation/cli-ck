@@ -1,0 +1,12 @@
+.idea/
+node_modules/
+*.swp
+test.js
+coverage
+mocha-test.html
+.nyc_output
+test.out
+npm-debug.log
+*.map
+_backup
+_scratch

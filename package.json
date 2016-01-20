@@ -1,0 +1,75 @@
+{
+  "name": "cli-ck",
+  "version": "0.0.1",
+  "description": "CLI framework for Node.js that's qui-ck and easy",
+  "main": "lib/cli-ck.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abelnation/cli-ck.git"
+  },
+  "keywords": [
+    "command",
+    "cli",
+    "parsing",
+    "parser",
+    "option",
+    "args",
+    "argparse",
+    "argument",
+    "repl",
+    "parseopt",
+    "opts",
+    "optparse",
+    "autocompletion",
+    "console",
+    "minimist",
+    "optimist",
+    "parser",
+    "argv",
+    "getopt"
+  ],
+  "author": {
+    "name": "Abel Allison",
+    "email": "abel.allison@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abelnation/cli-ck/issues"
+  },
+  "homepage": "https://github.com/abelnation/cli-ck",
+  "scripts": {
+    "build": "babel src --source-maps --out-dir lib",
+    "watch": "babel src --source-maps --watch --out-dir lib",
+    "lint": "eslint src/**.es6",
+    "test": "script -q test.out mocha --reporter min --require source-map-support/register --timeout=4000 --check-leaks ./lib/test/{unit,functional}/*.js | ansi-html > mocha-test.html",
+    "testwatch": "watch-run -p './lib/**/*.js' npm run test"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.3.14",
+    "lodash": "^4.0.0",
+    "shell-quote": "^1.4.3"
+  },
+  "devDependencies": {
+    "ansi-html-stream": "0.0.3",
+    "babel-cli": "^6.4.0",
+    "babel-eslint": "^5.0.0-beta6",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-register": "^6.3.13",
+    "chai": "^3.4.1",
+    "chalk": "^1.1.1",
+    "es6-promise": "^3.0.2",
+    "eslint": "^1.10.3",
+    "livereload": "git://github.com/napcs/node-livereload",
+    "mocha": "^2.3.4",
+    "source-map-support": "^0.4.0",
+    "watch-run": "git://github.com/abelnation/watch-run"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  }
+}
