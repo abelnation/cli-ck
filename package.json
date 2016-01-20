@@ -1,10 +1,14 @@
 {
   "name": "cli-ck",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "CLI framework for Node.js that's qui-ck and easy",
   "main": "lib/cli-ck.js",
   "scripts": {
-    "test": "npm test"
+    "build": "babel src --source-maps --out-dir lib",
+    "watch": "babel src --source-maps --watch --out-dir lib",
+    "lint": "eslint src/**.es6",
+    "test": "script -q test.out mocha --reporter min --require source-map-support/register --timeout=4000 --check-leaks ./lib/test/{unit,functional}/*.js | ansi-html > mocha-test.html",
+    "testwatch": "watch-run -p './lib/**/*.js' npm run test"
   },
   "repository": {
     "type": "git",
@@ -40,13 +44,6 @@
     "url": "https://github.com/abelnation/cli-ck/issues"
   },
   "homepage": "https://github.com/abelnation/cli-ck",
-  "scripts": {
-    "build": "babel src --source-maps --out-dir lib",
-    "watch": "babel src --source-maps --watch --out-dir lib",
-    "lint": "eslint src/**.es6",
-    "test": "script -q test.out mocha --reporter min --require source-map-support/register --timeout=4000 --check-leaks ./lib/test/{unit,functional}/*.js | ansi-html > mocha-test.html",
-    "testwatch": "watch-run -p './lib/**/*.js' npm run test"
-  },
   "dependencies": {
     "babel-polyfill": "^6.3.14",
     "lodash": "^4.0.0",
