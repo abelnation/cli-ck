@@ -46,12 +46,12 @@ class Completer {
         const partialParseResult = new Parser(this.context).parse(tokensMinusCurrent)
         const lastContext = partialParseResult.lastContext
 
-        console.log(`tokensMinusCurrent: ${ tokensMinusCurrent }`)
+        // console.log(`tokensMinusCurrent: ${ tokensMinusCurrent }`)
 
         const optionNames = lastContext.getOptionNames()
         const commandNames = lastContext.getCommandNames()
 
-        console.log(`options: ${ optionNames }`)
+        // console.log(`options: ${ optionNames }`)
 
         let prevToken
         if (hasPreviousToken) {
@@ -65,13 +65,13 @@ class Completer {
         // console.log(`prevToken: ${ prevToken }`)
         const toComplete = lastTokenIsEmpty ? '' : argv.peekLast()
 
-        console.log(line)
-        console.log(`toComplete: '${ toComplete }'`)
-        console.log(`hasPreviousToken: ${ hasPreviousToken }`)
-        console.log(`lastTokenIsEmpty: ${ lastTokenIsEmpty }`)
-        console.log(`prevToken: '${ prevToken }'`)
-        console.log(`argv:`)
-        console.dir(argv)
+        // console.log(line)
+        // console.log(`toComplete: '${ toComplete }'`)
+        // console.log(`hasPreviousToken: ${ hasPreviousToken }`)
+        // console.log(`lastTokenIsEmpty: ${ lastTokenIsEmpty }`)
+        // console.log(`prevToken: '${ prevToken }'`)
+        // console.log(`argv:`)
+        // console.dir(argv)
 
         let completions = this.getMatchesWithChoices(toComplete, commandNames)
 

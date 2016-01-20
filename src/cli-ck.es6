@@ -86,6 +86,8 @@ class Click {
             } else {
                 handler(args, opts, argv.args, this, lastContext)
             }
+        } else {
+            console.log(lastContext.getHelp())
         }
     }
 
@@ -226,7 +228,7 @@ class Click {
     }
 
     getUsage() {
-        return this.config.usage
+        return this.config.usage.replace(/\$((\{(NAME|0|PROG)\})|(NAME|0|PROG))/g, this.getName())
     }
 
     getMinArgs() {

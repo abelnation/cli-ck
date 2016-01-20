@@ -57,7 +57,6 @@ class Help {
         })
         return [
             'Commands:',
-            '',
             ... cmdLines,
             ''
         ]
@@ -73,7 +72,6 @@ class Help {
         })
         return [
             'Options:',
-            '',
             ... optLines
         ]
     }
