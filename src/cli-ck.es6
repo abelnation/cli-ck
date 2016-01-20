@@ -228,7 +228,12 @@ class Click {
     }
 
     getUsage() {
-        return this.config.usage.replace(/\$((\{(NAME|0|PROG)\})|(NAME|0|PROG))/g, this.getName())
+        if (this.config.usage) {
+            return this.config.usage.replace(/\$((\{(NAME|0|PROG)\})|(NAME|0|PROG))/g, this.getName())
+        } else {
+            return undefined
+        }
+
     }
 
     getMinArgs() {
