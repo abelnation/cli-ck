@@ -92,9 +92,8 @@ Try these in your terminal:
 <a name="api-reference" />
 ## API
 
-1. [new Click()](#api-reference_new-click)
-
 Running your program
+
   1. [.parse()](#api-reference_parse)
   1. [.run()](#api-reference_run)
   1. [.repl()](#api-reference_repl)
@@ -102,6 +101,7 @@ Running your program
   1. [.complete()](#api-reference_complete)
 
 Configuration
+
   1. [.name(name)](#api-reference_name)
   1. [.description(desc)](#api-reference_description)
   1. [.version(versionStr)](#api-reference_version)
@@ -110,13 +110,15 @@ Configuration
   1. [.handler(handlerFn)](#api-reference_handler)
 
 Options and Commands
+
   1. [.option(name, config)](#api-reference_option)
   1. [.optionSet(configs)](#api-reference_option-set)
   1. [.command(name, config, context)](#api-reference_command)
 
+---
+
 #### `var Click = require('cli-ck')`
 
-<a name="api-reference_new-click" />
 #### `new Click(config)`
 
 Creates a new Click instance.
@@ -127,6 +129,7 @@ Creates a new Click instance.
 ---
 
 <a name="api-reference_parse" />
+
 #### `.parse(argv)`
 
 Parses a line and returns a `parseResult`
@@ -154,6 +157,7 @@ Most often you just want the args and opts parsed.
 ---
 
 <a name="api-reference_run" />
+
 #### `.run(argv)`
 
 Parses and runs the CLI handler for the given input.
@@ -167,6 +171,7 @@ Parses and runs the CLI handler for the given input.
 ---
 
 <a name="api-reference_repl" />
+
 #### `.repl(argv)`
 
 Starts an interactive repl session using the Click instance's cli specification.
@@ -184,6 +189,7 @@ You can also enter the repl mode by passing the `--repl` in your input to `.run(
 ---
 
 <a name="api-reference_validate" />
+
 #### `.validate(argv)`
 
 ---
