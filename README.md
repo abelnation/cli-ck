@@ -2,7 +2,9 @@
 
 CLI framework for Node.js that's qui-ck and easy
 
-cli-ck provides a simple and flexible interface for creating cli apps in Node.js.
+`cli-ck` provides a simple and flexible interface for creating cli apps in Node.js.
+Inspired by the Yargs api, `cli-ck` provides an API that is flexible and composeable
+making it a breeze to write simple cli tools or complex interactive repl's.
 
 ## Synopsis
 
@@ -20,28 +22,39 @@ var cli = new Click()
         desc: 'Type of fruit',
         choices: [ 'apple', 'banana', 'peach', 'pear' ]
     })
-    .command('say', { desc: 'Say words in different ways' }, function(sayCli) {
-        sayCli
-            .usage('$0 say [--volume {soft,medium,loud}] <...words>')
-            .option('volume', {
-                alias: 'v',
-                desc: 'how loud do you want to say it? [loud, medium, soft]',
-                choices: [ 'loud', 'medium', 'soft' ],
-                defaultValue: 'medium'
-            })
-            .handler(function (args, opts) {
-                if (opts.volume === 'loud') {
-                    args = args.map(function(x) { return x.toUpperCase() })
-                } else if (opts.volume === 'soft') {
-                    args = args.map(function(x) { return x.toLowerCase() })
-                }
-                console.log.apply(null, args)
-            })
-    })
+    .command('say', { desc: 'Say words in different ways' }, require('./say'))
     .handler(function(args, opts) {
         console.log('please choose a command')
     })
 cli.run(process.argv)
+```
+
+`say.js`
+
+```javascript
+#!/usr/bin/env node
+require('babel-polyfill')
+var Click = require('../lib/cli-ck')
+var cli = new Click()
+    .usage('$0 say [--volume {soft,medium,loud}] <...words>')
+    .option('volume', {
+        alias: 'v',
+        desc: 'how loud do you want to say it? [loud, medium, soft]',
+        choices: [ 'loud', 'medium', 'soft' ],
+        defaultValue: 'medium'
+    })
+    .handler(function (args, opts) {
+        if (opts.volume === 'loud') {
+            args = args.map(function(x) { return x.toUpperCase() })
+        } else if (opts.volume === 'soft') {
+            args = args.map(function(x) { return x.toLowerCase() })
+        }
+        console.log.apply(null, args)
+    })
+
+module.exports = cli
+
+if (require.main
 ```
 
 In your terminal:
@@ -56,7 +69,7 @@ In your terminal:
 > help
 > say hi
 > exit
-~$ 
+~$
 ```
 
 ## Summary
@@ -67,3 +80,13 @@ In your terminal:
     * Default commands & options provided (`help`, `exit`, `--version`, `--help`)
     * Robust validation of commands, options, and argument values
     * Auto-included repl allows you to run your cli as an interactive repl
+
+## API
+
+### CLI Metadata
+
+
+
+### Options
+
+### Sub-Commands
