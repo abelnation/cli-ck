@@ -85,8 +85,6 @@ class Help {
                 // parse line after 'help' to figure out command context
                 // to print help for
 
-                console.dir(argv)
-
                 const helpIdx = argv.indexOf('help')
 
                 const parseResult = (new Parser(parentContext)).parse(argv.slice(helpIdx + 1))
