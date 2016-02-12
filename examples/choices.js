@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var Click = require('./cli-ck')
+var Click = require('../lib/cli-ck')
 
 var cli = new Click()
     .usage('$0 [--fruit -f <fruit>] [--city -c <city>] [--lucky-number -n <num>]')

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var Click = require('./cli-ck')
+var Click = require('../lib/cli-ck')
 
 function fibo(nelems) {
     var e1 = 0
