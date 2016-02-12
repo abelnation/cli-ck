@@ -3,8 +3,8 @@
 CLI framework for Node.js that's qui-ck and easy
 
 `cli-ck` provides a simple and flexible interface for creating cli apps in Node.js.
-Inspired by the Yargs api, `cli-ck` provides an API that is flexible and composeable
-making it a breeze to write simple cli tools or complex interactive repl's.
+Inspired by the Yargs api, `cli-ck` provides an API that is flexible and composeable,
+making it a breeze to write simple cli tools or complex, interactive REPL's.
 
 1. [Synopsis](#synopsis)
 1. [API Reference](#api)
@@ -64,6 +64,7 @@ Try these in your terminal:
 
 ```bash
 ~$ chmod u+x ./easy.js
+~$ ./easy.js --help
 ~$ ./easy.js help
 ~$ ./easy.js help say
 ~$ ./easy.js say hi there
