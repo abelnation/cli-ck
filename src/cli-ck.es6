@@ -1,105 +1,110 @@
 
-const _ = require('lodash')
-const repl = require('repl')
-const path = require('path')
-const ArgConsumer = require('./arg-consumer')
-const Option = require('./option')
-const Command = require('./command')
-const Completer = require('./completer')
-const Parser = require('./parser')
-const Validator = require('./validator')
-const Help = require("./help")
+var _ = require('lodash')
+var nodeREPL = require('repl')
+var path = require('path')
+var util = require('util')
+var ArgConsumer = require('./arg-consumer')
+var Option = require('./option')
+var Command = require('./command')
+var Completer = require('./completer')
+var Parser = require('./parser')
+var Validator = require('./validator')
+var Help = require('./help')
 
-class ClickError extends Error {}
+function ClickError(message) {
+    Error.call(this)
+    this.message = message
+}
+util.inherits(ClickError, Error)
 
-class Click {
-    constructor(config) {
-        // options
-        this.options = {}
-        this.optDefaults = {}
-        this.optNames = {}
-        this.requiredOpts = {}
+function Click(config) {
+    // options
+    this.options = {}
+    this.optDefaults = {}
+    this.optNames = {}
+    this.requiredOpts = {}
 
-        // commands
-        this.commands = {}
+    // commands
+    this.commands = {}
 
-        // misc config
-        this.config = {}
+    // misc config
+    this.config = {}
 
-        // default name to top-level script name
-        const mainPath = require.resolve(require.main.filename)
-        if (mainPath) {
-            const mainTokens = mainPath.split(path.sep)
-            this.config.name = mainTokens[mainTokens.length - 1]
-        }
-
-        this.option('version', { alias: 'v', desc: 'print version' })
-        this.option('help', { alias: [ 'h', 'H' ], desc: 'print help' })
-
-        const noHelp = config ? config.noHelp : false
-        if (!noHelp) {
-            this.command('help', { description: 'print help' }, Help.getHelpCommandContext())
-        }
+    // default name to top-level script name
+    var mainPath = require.resolve(require.main.filename)
+    if (mainPath) {
+        var mainTokens = mainPath.split(path.sep)
+        this.config.name = mainTokens[mainTokens.length - 1]
     }
 
-    // Main methods
-    parse(argv, cb) {
-        const parseResult = (new Parser(this)).parse(argv, cb)
+    this.option('version', { alias: 'v', desc: 'print version' })
+    this.option('help', { alias: [ 'h', 'H' ], desc: 'print help' })
+
+    var noHelp = config ? config.noHelp : false
+    if (!noHelp) {
+        this.command('help', { description: 'print help' }, Help.getHelpCommandContext())
+    }
+}
+
+_.extend(Click.prototype, {
+
+    parse: function parse(argv, cb) {
+        var parseResult = (new Parser(this)).parse(argv, cb)
 
         if (cb) {
             return cb(null, parseResult)
         } else {
             return parseResult
         }
-    }
+    },
 
-    run(argv, cb) {
+    run: function run(argv, cb) {
         argv = ArgConsumer.cleanArgv(argv)
 
-        const parseResult = (new Parser(this)).parse(argv, cb)
+        var parseResult = (new Parser(this)).parse(argv, cb)
         if (parseResult.opts.repl) {
             return this.repl(argv, cb)
         }
 
         try {
-            const isValid = (new Validator(this)).validate(parseResult)
+            var isValid = (new Validator(this)).validate(parseResult)
             if (!isValid) {
                 console.error('Error: Invalid input')
                 return
             }
         } catch (e) {
-            console.error(`Error: ${ e.message }`)
+            console.error('Error: ' + e.message)
             return
         }
 
-        const lastContext = parseResult.lastContext
-        const handler = lastContext.getHandler()
+        var lastContext = parseResult.lastContext
+        var handler = lastContext.getHandler()
 
         if (handler && typeof handler === 'function') {
-            const args = parseResult.args
-            const opts = parseResult.opts
+            var args = parseResult.args
+            var opts = parseResult.opts
 
             if (opts.help) {
                 console.log(lastContext.getHelp())
             } else if (opts.version) {
-                console.log(`Version: ${ this.config.version }`)
+                console.log('Version: ' + this.config.version)
             } else {
                 handler(args, opts, argv.args, this, lastContext)
             }
         } else {
             console.log(lastContext.getHelp())
         }
-    }
+    },
 
-    repl(argv, cb) {
+    repl: function repl(argv, cb) {
         // start repl
-        this.command('exit', { desc: 'exit the program' }, new Click().handler(() => {
+        this.command('exit', { desc: 'exit the program' }, new Click().handler(function () {
             process.exit(0)
         }))
 
-        const server = repl.start({
+        var server = nodeREPL.start({
             prompt: '> ',
-            eval: (line, nodeContext, filename, callback) => {
+            eval: function (line, nodeContext, filename, callback) {
                 line = line.slice(1,-2)
                 this.run(line)
                 server.displayPrompt()
@@ -111,40 +116,40 @@ class Click {
 
         // assign repl completion fn
         server.complete = Completer.getReplTabCompleteCallback(this)
-    }
+    },
 
-    validate(line, cb) {
+    validate: function validate(line, cb) {
         return (new Validator(this)).validate(line)
-    }
+    },
 
-    complete(line, cb) {
+    complete: function complete(line, cb) {
         return (new Completer(this)).getCompletions(line, cb)
-    }
+    },
 
     // Configuration Methods
 
-    name(name) {
+    name: function name(name) {
         this.config.name = name
         return this
-    }
+    },
 
-    description(description) {
+    description: function description(description) {
         this.config.description = description
         return this
-    }
+    },
 
-    version(version) {
+    version: function version(version) {
         this.config.version = version
         return this
-    }
+    },
 
-    usage(msg) {
+    usage: function usage(msg) {
         // msg may be a single string or an array of strings
         this.config.usage = msg
         return this
-    }
+    },
 
-    nargs(min, max) {
+    nargs: function nargs(min, max) {
         if (typeof min !== 'undefined' && typeof max === 'undefined') {
             // single arg case
             if (min >= 0) {
@@ -167,16 +172,16 @@ class Click {
         }
 
         return this
-    }
+    },
 
-    option(name, config) {
-        const opt = new Option(name, config)
+    option: function option(name, config) {
+        var opt = new Option(name, config)
         this.optNames[name] = opt
 
         // Register config for all names
-        for (let label of opt.getAliases()) {
+        _.forEach(opt.getAliases(), function(label) {
             this.options[label] = opt
-        }
+        })
 
         // Register in other lookups
         if (opt.isRequired()) {
@@ -187,103 +192,101 @@ class Click {
         }
 
         return this
-    }
+    },
 
-    optionSet(configs) {
-        for (let key in configs) {
-            const config = configs[key]
+    optionSet: function optionSet(configs) {
+        _.forEach(configs, function(config, key) {
             this.option(key, config)
-        }
+        })
         return this
-    }
+    },
 
-    command(name, config, context) {
-        const cmd = new Command(name, config, this, context)
+    command: function command(name, config, context) {
+        var cmd = new Command(name, config, this, context)
         this.commands[name] = cmd
 
         return this
-    }
+    },
 
-    handler(cb) {
+    handler: function handler(cb) {
         if (typeof cb !== 'function') {
             throw new ClickError('handler must be a function')
         }
         this.handlerFn = cb
 
         return this
-    }
+    },
 
     // Getters
 
-    getName() {
+    getName: function getName() {
         return this.config.name
-    }
+    },
 
-    getDescription() {
+    getDescription: function getDescription() {
         return this.config.description
-    }
+    },
 
-    getVersion() {
+    getVersion: function getVersion() {
         return this.config.version
-    }
+    },
 
-    getUsage() {
+    getUsage: function getUsage() {
         if (this.config.usage) {
             return this.config.usage.replace(/\$((\{(NAME|0|PROG)\})|(NAME|0|PROG))/g, this.getName())
         } else {
             return undefined
         }
+    },
 
-    }
-
-    getMinArgs() {
+    getMinArgs: function getMinArgs() {
         return this.nargsMin
-    }
+    },
 
-    getMaxArgs() {
+    getMaxArgs: function getMaxArgs() {
         return this.nargsMax
-    }
+    },
 
-    getOptionNames() {
+    getOptionNames: function getOptionNames() {
         return Object.keys(this.options)
-    }
+    },
 
-    getRequiredOptions() {
+    getRequiredOptions: function getRequiredOptions() {
         return this.requiredOpts
-    }
+    },
 
-    getCommandNames() {
+    getCommandNames: function getCommandNames() {
         return Object.keys(this.commands)
-    }
+    },
 
-    getCommand(command) {
-        let context = this
-        let result
-        const commands = command.split(Parser.COMMAND_DELIM)
-        for (let token of commands) {
+    getCommand: function getCommand(command) {
+        var context = this
+        var result
+        var commands = command.split(Parser.COMMAND_DELIM)
+        _.forEach(commands, function(token) {
             if (!(token in this.commands)) {
                 throw new ClickError('Invalid command: ' + token)
             }
             result = context.commands[token]
             context = result.context
-        }
+        })
         return result
-    }
+    },
 
-    getHandler() {
+    getHandler: function getHandler() {
         return this.handlerFn
-    }
+    },
 
-    getHelp() {
+    getHelp: function getHelp() {
         return (new Help(this)).getHelp()
-    }
+    },
 
-    // Static methods
+})
 
-    static parse(argv) {
+_.extend(Click, {
+    parse: function parse(argv) {
         return new Click().parse(argv)
     }
-
-}
+})
 
 module.exports = Click
