@@ -30,5 +30,4 @@ var cli = new Click()
         console.log('City: ' + opts.city)
         console.log('Lucky-number: ' + opts.n)
     })
-
 cli.run(process.argv)

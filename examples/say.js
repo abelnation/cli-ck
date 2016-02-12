@@ -16,7 +16,4 @@ var cli = new Click()
         }
         console.log.apply(null, args)
     })
-module.exports = cli
-if (require.main === module) {
-    cli.run(process.argv.slice(2))
-}
+cli.run(process.argv.slice(2))

@@ -34,5 +34,4 @@ var cli = new Click()
         var nelems = opts.nelems
         fibo(nelems)
     })
-
 cli.run(process.argv)
