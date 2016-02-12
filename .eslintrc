@@ -1,27 +1,13 @@
 {
-    // I want to use babel-eslint for parsing!
-    "parser": "babel-eslint",
-
     "env": {
-        // in CommonJS
         "node": true,
-
-        // browser
         "browser": true,
-
-        // mocha
         "mocha": true
     },
-
     "ecmaFeatures": {
         "jsx": true,
     },
-
-    "globals": {
-
-    },
-
-    // To give you an idea how to override rule options:
+    "globals": {},
     "rules": {
         "semi": [2, "never"],
         "quotes": [2, "single", "avoid-escape"],
