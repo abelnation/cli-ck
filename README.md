@@ -20,7 +20,6 @@ npm install cli-ck
 
 ```javascript
 #!/usr/bin/env node
-require('babel-polyfill')
 var Click = require('../lib/cli-ck')
 var cli = new Click()
     .description('demonstrates the cli-ck module')
@@ -41,7 +40,6 @@ cli.run(process.argv)
 
 ```javascript
 #!/usr/bin/env node
-require('babel-polyfill')
 var Click = require('../lib/cli-ck')
 var cli = new Click()
     .usage('$0 [--volume {soft,medium,loud}] <...words>')
@@ -317,9 +315,6 @@ var cli = new Click()
 ```
 
 ## Development
-
-All source code is written in ES6 javascript and compiled using Babel
-with the `es2015` preset.
 
 Main dev commands:
 

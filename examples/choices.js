@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-require('babel-polyfill')
 var Click = require('./cli-ck')
 
 var cli = new Click()

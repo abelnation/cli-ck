@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-require('babel-polyfill')
 var Click = require('../lib/cli-ck')
 var cli = new Click()
     .usage('$0 [--fruit {apple,banana,peach,pear}] ...')

@@ -4,10 +4,9 @@
   "description": "CLI framework for Node.js that's qui-ck and easy",
   "main": "lib/cli-ck.js",
   "scripts": {
-    "build": "babel src --source-maps --out-dir lib",
-    "watch": "babel src --source-maps --watch --out-dir lib",
-    "lint": "eslint src/**.es6",
-    "test": "script -q test.out mocha --reporter min --require source-map-support/register --timeout=4000 --check-leaks ./lib/test/{unit,functional}/*.js | ansi-html > mocha-test.html",
+    "lint": "eslint lib/**/*.{js,es6}",
+    "test": "mocha --reporter min --timeout=4000 --check-leaks ./lib/test/{unit,functional}/*.js",
+    "testhtml": "script -q test.out npm test | ansi-html > mocha-test.html",
     "testwatch": "watch-run -p './lib/**/*.js' npm run test"
   },
   "repository": {
@@ -45,7 +44,6 @@
   },
   "homepage": "https://github.com/abelnation/cli-ck",
   "dependencies": {
-    "babel-polyfill": "^6.3.14",
     "lodash": "^4.0.0",
     "shell-quote": "^1.4.3"
   },
@@ -53,11 +51,9 @@
     "ansi-html-stream": "0.0.3",
     "chai": "^3.4.1",
     "chalk": "^1.1.1",
-    "es6-promise": "^3.0.2",
     "eslint": "^1.10.3",
     "livereload": "git://github.com/napcs/node-livereload",
     "mocha": "^2.3.4",
-    "source-map-support": "^0.4.0",
     "watch-run": "git://github.com/abelnation/watch-run"
   },
   "babel": {
