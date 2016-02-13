@@ -10,6 +10,11 @@ var cli = new Click()
         choices: [ 'loud', 'medium', 'soft' ],
         defaultValue: 'medium'
     })
+    .command('whisper', new Click()
+        .description('shhhh...')
+        .handler(function (args, opts) {
+            console.log('shhhh...')
+        }))
     .handler(function (args, opts) {
         if (opts.volume === 'loud') {
             args = args.map(function(x) { return x.toUpperCase() })
@@ -18,4 +23,11 @@ var cli = new Click()
         }
         console.log.apply(null, args)
     })
-cli.run(process.argv.slice(2))
+
+// This script can be run standalone or
+// as a sub-command in another Click instance
+module.exports = cli
+if (require.main === module) {
+    cli.run(process.argv.slice(2))
+}
+

@@ -14,4 +14,4 @@ var cli = new Click()
     .handler(function(args, opts) {
         console.log('please choose a command')
     })
-cli.run(process.argv)
+cli.run(process.argv.slice(2))
