@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 var Click = require('../lib/cli-ck')
 var cli = new Click()
+    .name('say')
+    .description('Say words in different ways')
     .usage('$0 [--volume {soft,medium,loud}] <...words>')
     .option('volume', {
         alias: 'v',
