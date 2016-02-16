@@ -3,7 +3,6 @@ var Click = require('../lib/cli-ck')
 var cli = new Click()
     .name('easy')
     .description('demonstrates the cli-ck module')
-    .usage('$0 [--fruit {apple,banana,peach,pear}] ...')
     .version('1.0.0')
     .option('fruit', {
         alias: 'f',
